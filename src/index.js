@@ -3,10 +3,27 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import CatDataProvider from './store/CatDataProvider';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const myTheme = createTheme({
+  palette: {
+    primary: {
+      main: "#ffe0b2",
+    },
+　　secondary: {
+      main: "#76ff03",
+    },
+  },
+});
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <CatDataProvider>
+      <ThemeProvider theme={myTheme}>
+        <App />
+      </ThemeProvider>
+    </CatDataProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
