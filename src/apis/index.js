@@ -10,7 +10,7 @@ export const fetchNekoData = async() => {
     params: {
       part: 'snippet',
       q: '猫　かわいい',
-      maxResults: 10,
+      maxResults: 5,
       key: KEY,
       regionCode: 'JP',
       type: 'video',

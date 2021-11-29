@@ -1,5 +1,6 @@
+import { style } from '@mui/system'
 import React, { createContext, useReducer } from 'react'
-
+import sytle from '../Youtube.module.css'
 const initialState = {
   catDatas: [],
   catThumbnail: [],
@@ -12,6 +13,9 @@ const reducer = (state, action) => {
         return {
           original: data.snippet.thumbnails.high.url,
           thumbnail: data.snippet.thumbnails.high.url,
+          originalTitle: 'aaa',
+          thumbnailTitle: 'aaa',
+          thumbnailLabel: 'aaa',
         }
       })
       return {...state, catDatas: action.payload.catDatas, catThumbnail: catThumbnails}

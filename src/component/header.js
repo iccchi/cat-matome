@@ -7,11 +7,14 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { orange } from '@mui/material/colors';
+import { FormDialog } from './FormDialog';
+import { userContext } from '../store/UserProvider';
+import { Logout } from './Logout';
 
 
 
 export const Header = () => {
-  const color = orange[500]
+  const {currentUser} = React.useContext(userContext)
   return (
     <Box sx={{ flexGrow: 1 }} >
       <AppBar position="static">
@@ -28,7 +31,9 @@ export const Header = () => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             猫まとめ
           </Typography>
-          <Button color="inherit">Login</Button>
+          {
+            currentUser.id ? (<Logout/>):(<FormDialog />)
+          }
         </Toolbar>
       </AppBar>
     </Box>

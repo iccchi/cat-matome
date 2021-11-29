@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import CatDataProvider from './store/CatDataProvider';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import UserProvider from './store/UserProvider';
 
 const myTheme = createTheme({
   palette: {
@@ -14,15 +15,20 @@ const myTheme = createTheme({
 　　secondary: {
       main: "#76ff03",
     },
+    info: {
+      main: "#263238"
+    }
   },
 });
 
 ReactDOM.render(
   <React.StrictMode>
     <CatDataProvider>
+    <UserProvider>
       <ThemeProvider theme={myTheme}>
         <App />
       </ThemeProvider>
+    </UserProvider>
     </CatDataProvider>
   </React.StrictMode>,
   document.getElementById('root')
