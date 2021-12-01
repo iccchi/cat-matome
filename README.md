@@ -1,34 +1,24 @@
-# Getting Started with Create React App
+# 猫まとめ
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+url
 
-## Available Scripts
+## アプリについて
 
-In the project directory, you can run:
+猫の動画に特化したWeb動画サービスを作ってみました。寝る前のちょっとした時間や休憩時間のときに猫に癒されるためのアプリです。
 
-### `yarn start`
+### 作ったきっかけ
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+私は猫が大好きで、毎日寝る前やちょっとした時間にYouTubeで猫の動画を見ます。YouTubeでは、関連動画やおすすめ動画といった機能により、猫以外にも興味のある動画が提案されて、ついつい色々な動画を見てしまって、寝る時間が遅くなってしまったり、時間を潰してしまうことがよくあります。そこで、猫のみに特化した動画サービスを開発してみようと思いました。
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 使用技術
 
-### `yarn test`
+フロントエンド：React、Material UI
+バックエンド：Firebase
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### アプリの機能
 
-### `yarn build`
 
 Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
 ### `yarn eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
