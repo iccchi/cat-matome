@@ -6,9 +6,13 @@ import ImageGallery from 'react-image-gallery';
 import "react-image-gallery/styles/css/image-gallery.css";
 import YouTube from 'react-youtube';
 import style from '../Youtube.module.css'
-import { Container } from '@mui/material';
-import { Box, height } from '@mui/system';
-import { FormDialog } from '../component/FormDialog';
+import { Container, Typography } from '@mui/material';
+
+import Grid from '@mui/material/Grid';
+import { LikeIcon } from '../component/LikeIcon';
+import { ThumnailList } from '../component/ThumnailList';
+
+
 
 export const TopPage = () => {
 
@@ -18,7 +22,7 @@ export const TopPage = () => {
   const [title, setCurrentTitle] = useState('')
   const changeCatMovie = (e) => {
     console.log(e)
-    setCurrentCatMovie(globalCatState.catDatas[currentCatThumbnail].id.videoId)
+    setCurrentCatMovie(globalCatState.catDatas[currentCatThumbnail])
     // setCurrentTitle(globalCatState.catDatas[currentCatThumbnail].snippet.title)
   }
   const changeCatThumbnail = (idx) => {
@@ -27,11 +31,16 @@ export const TopPage = () => {
     setCurrentTitle(globalCatState.catDatas[idx].snippet.title)
   }
   useEffect(()=>{
-    fetchNekoData().then((res)=>{
-      setGlobalCatState({type: 'SET_CATDATAS', payload: {catDatas: res.data.items}})
-     })
-
+    const getfetchneko = async() =>{
+      await fetchNekoData().then((res)=>{
+        setGlobalCatState({type: 'SET_CATDATAS', payload: {catDatas: res.data.items}})
+       })
+    }
+    getfetchneko()
   }, [])
+  useEffect(()=>{
+    setCurrentCatMovie(globalCatState.catDatas[0])
+  },[globalCatState])
 
   console.log(globalCatState)
   return (
@@ -39,16 +48,28 @@ export const TopPage = () => {
     <Header />
     <Container >
       {
-        globalCatState.catDatas.length > 0 && (
+        currentCatMovie ? (
             <>
-            <YouTube videoId={currentCatMovie} className={style.iframe} containerClassName={style.youtube}/>
+            <YouTube videoId={currentCatMovie.id.videoId} className={style.iframe} containerClassName={style.youtube}/>
             </>
+        ):(
+          <div>aaaa</div>
         )
       }
-      <Box sx={{ mx: "auto", width: '60vw', height:'30vh'}}>
-        <Box sx={{ color: 'text.secondary' }}>{title}</Box>
-        <ImageGallery items={globalCatState.catThumbnail} showFullscreenButton={false} showPlayButton={false} onClick={(e)=>changeCatMovie(e)} onSlide={(idx)=>changeCatThumbnail(idx)}/>
-      </Box>
+      <Grid container>
+        <Grid item xs>
+          <Typography>{title}</Typography>
+        </Grid>
+        <Grid item>
+          {
+            currentCatMovie && (
+              <LikeIcon video={currentCatMovie}/>
+            )
+          }
+        </Grid>
+      </Grid>
+      <ThumnailList setCurrentCatMovie={setCurrentCatMovie} setCurrentTitle={setCurrentTitle}/>
+    {/* <ImageGallery items={globalCatState.catThumbnail} showFullscreenButton={false} showPlayButton={false} onClick={(e)=>changeCatMovie(e)} onSlide={(idx)=>changeCatThumbnail(idx)}/> */}
     </Container>
     </>
   )

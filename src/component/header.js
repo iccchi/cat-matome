@@ -3,13 +3,12 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { orange } from '@mui/material/colors';
 import { FormDialog } from './FormDialog';
 import { userContext } from '../store/UserProvider';
 import { Logout } from './Logout';
+import { ToLike } from './ToLike';
 
 
 
@@ -32,7 +31,12 @@ export const Header = () => {
             猫まとめ
           </Typography>
           {
-            currentUser.id ? (<Logout/>):(<FormDialog />)
+            currentUser.id ? (
+              <>
+              <ToLike />
+              <Logout/>
+              </>
+            ):(<FormDialog />)
           }
         </Toolbar>
       </AppBar>

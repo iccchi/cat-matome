@@ -3,6 +3,8 @@ import Button from '@mui/material/Button';
 import { signOut } from '@firebase/auth';
 import { auth } from '../firebase';
 import { userContext } from '../store/UserProvider';
+import SvgIcon from '@mui/material/SvgIcon';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 export const Logout = () => {
   const {setCurrentUser} = useContext(userContext)
@@ -16,8 +18,10 @@ export const Logout = () => {
   }
   return (
     <>
-      <Button variant="outlined" onClick={logout} color="info">
-        ログアウト
+      <Button  onClick={logout} color="info">
+        <SvgIcon>
+          <LogoutIcon />
+        </SvgIcon>
       </Button>
     </>
   )

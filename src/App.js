@@ -1,7 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
 import { TopPage } from './pages/TopPage';
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import {  onAuthStateChanged } from "firebase/auth";
 import { useContext, useEffect } from 'react';
 import { auth } from './firebase';
 import { userContext } from './store/UserProvider';

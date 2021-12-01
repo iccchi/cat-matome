@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const AuthPage = () => {
+export const NekoMovie = () => {
   return (
     <div>
       

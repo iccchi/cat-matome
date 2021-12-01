@@ -1,17 +1,12 @@
 import React, { useState } from 'react'
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import { Container, Typography } from '@mui/material';
 import { Login } from './Login';
 import { SignUp } from './SignUp';
-import Grid from '@mui/material/Grid';
-
-
+import LoginIcon from '@mui/icons-material/Login';
+import SvgIcon from '@mui/material/SvgIcon';
 export const FormDialog = () => {
   const [open, setOpen] = useState(false)
   const [loginForm, setLoginForm] = useState(true)
@@ -21,13 +16,18 @@ export const FormDialog = () => {
 
   const handleClose = () => {
     setOpen(false);
+    setLoginForm(true)
   };
 
   return (
       <>
-      <Button variant="outlined" onClick={handleClickOpen} color="info">
+      <Button onClick={handleClickOpen} color="info">
         {
-          loginForm ? ('ログイン'):('サインアップ')
+          loginForm ? (
+            <SvgIcon fontSize="large">
+              <LoginIcon/>
+            </SvgIcon>
+          ):('サインアップ')
         }
       </Button>
       <Dialog open={open} onClose={handleClose}>
