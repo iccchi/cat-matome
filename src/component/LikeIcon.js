@@ -5,19 +5,20 @@ import Favorite from '@mui/icons-material/Favorite';
 import {  doc, deleteDoc, setDoc } from '@firebase/firestore';
 import { db } from '../firebase';
 import { userContext } from '../store/UserProvider';
-import { CatStore } from '../store/CatDataProvider';
+import { getNekoLike } from '../apis';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 export const LikeIcon = ({video}) => {
   const [like, setLike] = useState(false)
   const {currentUser} = useContext(userContext)
-  const {globalCatState, setGlobalCatState} = useContext(CatStore)
+
   const handleLikeChange = async(e) => {
     setLike(e.target.checked)
-    if(e.target.checked==true){
+    if(e.target.checked===true){
       await setDoc(doc(db, 'userlike', String(currentUser.id), 'movieList', video.id.videoId), {
         title: video.snippet.title,
+        channelTitle: video.snippet.channelTitle,
         thumbnails: video.snippet.thumbnails.high
       }).then((docRef)=>{
         console.log(docRef)
@@ -32,10 +33,14 @@ export const LikeIcon = ({video}) => {
   }
  
   useEffect(()=>{
-
-  },[])
+    getNekoLike(currentUser, video)
+      .then(res=>{
+        console.log(res)
+        setLike(res)
+      })
+  },[currentUser, video])
 
   return (
-    <Checkbox onChange={handleLikeChange} {...label} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
+    <Checkbox checked={like} onChange={handleLikeChange} {...label} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
   )
 }

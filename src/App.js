@@ -7,9 +7,10 @@ import { userContext } from './store/UserProvider';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { FavoritePage } from './pages/FavoritePage';
 import { NotFoundPage } from './pages/NotFoundPage';
+import {useHistory} from 'react-router-dom'
 
 function App() {
-
+  const history = useHistory()
   const {setCurrentUser} = useContext(userContext)
 
   useEffect(()=>{
@@ -19,7 +20,7 @@ function App() {
           id: user.uid
         })
       }else{
-
+        history.push('/')
       }
     })
     return unSub
