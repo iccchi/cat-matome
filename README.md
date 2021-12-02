@@ -12,8 +12,8 @@ url
 
 ### 使用技術
 
-フロントエンド：React、Material UI
-バックエンド：Firebase
+フロントエンド：React、Material UI<br>
+バックエンド：Firebase<br>
 外部API: YouTubeAPI
 
 ### アプリの機能
