@@ -1,6 +1,4 @@
-import { style } from '@mui/system'
 import React, { createContext, useReducer } from 'react'
-import sytle from '../Youtube.module.css'
 const initialState = {
   catDatas: [],
   catThumbnail: [],
