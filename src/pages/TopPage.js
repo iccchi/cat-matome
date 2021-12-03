@@ -8,6 +8,7 @@ import { Container, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { LikeIcon } from '../component/LikeIcon';
 import { ThumnailList } from '../component/ThumnailList';
+import { userContext } from '../store/UserProvider';
 
 
 
@@ -15,10 +16,10 @@ export const TopPage = () => {
 
   const {globalCatState, setGlobalCatState} = useContext(CatStore)
   const [currentCatMovie, setCurrentCatMovie] = useState(null)
-  
+  const {currentUser} = useContext(userContext)
   useEffect(()=>{
     const getfetchneko = async() =>{
-      await fetchNekoData().then((res)=>{
+      await fetchRandomNekoData().then((res)=>{
         setGlobalCatState({type: 'SET_CATDATAS', payload: {catDatas: res.data.items}})
        })
     }
@@ -42,9 +43,13 @@ export const TopPage = () => {
               <Grid item xs>
                 <Typography>{currentCatMovie.snippet.title}</Typography>
               </Grid>
-              <Grid item>
-                <LikeIcon video={currentCatMovie}/>
-              </Grid>
+              {
+                currentUser.id && (
+                <Grid item>
+                  <LikeIcon video={currentCatMovie}/>
+                </Grid>
+                )
+              }
             </Grid>
             </>
         ):(

@@ -43,6 +43,9 @@ export const FavoritePage = () => {
     <>
     <Header/>
     <Container sx={{marginTop: 2}}> 
+    {
+      currentUser.id ? (
+      <Container sx={{marginTop: 2}}> 
       {
         (favoriteCatList.length>0)&&(currentMovie) && (
           <>
@@ -59,6 +62,11 @@ export const FavoritePage = () => {
           </>
         )
       }
+      </Container>
+      ):(
+        <div>アカウントを作成する</div>
+      )
+    }
     </Container>
     </>
   )

@@ -21,8 +21,7 @@ export const LikeIcon = ({video}) => {
         channelTitle: video.snippet.channelTitle,
         thumbnails: video.snippet.thumbnails.high
       }).then((docRef)=>{
-        console.log(docRef)
-        alert('createlike')
+        
       }).catch((err)=>{
         console.log(err)
       })
