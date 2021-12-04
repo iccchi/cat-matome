@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { fetchNekoData,fetchRandomNekoData } from '../apis'
+import { fetchRandomNekoData } from '../apis'
 import { Header } from '../component/header'
 import { CatStore } from '../store/CatDataProvider'
 import YouTube from 'react-youtube';
@@ -24,13 +24,14 @@ export const TopPage = () => {
        })
     }
     getfetchneko()
+    // eslint-disable-next-line 
   }, [])
 
   useEffect(()=>{
     setCurrentCatMovie(globalCatState.catDatas[0])
   },[globalCatState])
 
-  console.log(currentCatMovie)
+
   return (
     <>
     <Header />

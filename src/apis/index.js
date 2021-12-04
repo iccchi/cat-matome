@@ -34,7 +34,7 @@ export const fetchRandomNekoData = async() => {
       q: '猫　かわいい',
       publishedAfter : publishedAfter,
       publishedBefore: publishedBefore,
-      maxResults: 10,
+      maxResults: 30,
       key: KEY,
       regionCode: 'JP',
       type: 'video',
@@ -68,10 +68,8 @@ export const getNekoLike = async(currentUser, video) => {
   const docSnap = await getDoc(docRef)
   let checklike = false
   if (docSnap.exists()){
-    console.log("Document data:", docSnap.data())
     checklike = true
   }else{
-    console.log("No such document!");
   }
   return checklike
 }

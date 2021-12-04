@@ -3,14 +3,12 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import { FormDialog } from './FormDialog';
 import { userContext } from '../store/UserProvider';
 import { Logout } from './Logout';
 import { ToLike } from './ToLike';
 import { useHistory } from 'react-router';
-
+import TemporaryDrawer from './Drawer';
 
 
 export const Header = () => {
@@ -23,15 +21,7 @@ export const Header = () => {
     <Box sx={{ flexGrow: 1 }} >
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
+          <TemporaryDrawer />
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} onClick={toTopPage}>
             猫まとめ
           </Typography>
