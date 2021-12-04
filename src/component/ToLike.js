@@ -7,7 +7,6 @@ import SvgIcon from '@mui/material/SvgIcon';
 export const ToLike = () => {
   const history = useHistory()
   const toLikePage = () => {
-    console.log('aaa')
     history.push('/like/')
   }
    return (

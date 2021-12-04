@@ -14,10 +14,10 @@ export const ThumnailList = ({setCurrentCatMovie}) =>  {
   
   return (
     <Box sx={{ flexGrow: 1, maxHeight: '50vh',overflow: 'auto'}}>
-      <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+      <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} sx={{maxHeight: '50vh'}}>
         {globalCatState.catDatas.map((item, idx) => (
           <Grid item xs={2} sm={4} md={4} key={idx} sx={{width: '50%'}}>
-          <ImageListItem onClick={()=>changeCurrentMovie(idx)}>
+          <ImageListItem onClick={()=>changeCurrentMovie(idx)} sx={{maxWidth: '100%'}}>
             <img
               src={`${item.snippet.thumbnails.high.url}?w=248&fit=crop&auto=format`}
               srcSet={`${item.snippet.thumbnails.high.url}?w=248&fit=crop&auto=format&dpr=2 2x`}

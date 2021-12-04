@@ -12,7 +12,9 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import {auth} from '../firebase'
- 
+import { GoogleAuthProvider, signInWithPopup} from "firebase/auth";
+import GoogleIcon from '@mui/icons-material/Google';
+import { SvgIcon } from '@mui/material';
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -27,16 +29,13 @@ function Copyright(props) {
 }
 
 const theme = createTheme();
+const provider = new GoogleAuthProvider()
 
 export const Login = ({setOpen, setLoginForm}) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
     const email = data.get('email')
     const password = data.get('password')
     signInWithEmailAndPassword(auth, email, password)
@@ -45,9 +44,32 @@ export const Login = ({setOpen, setLoginForm}) => {
         setOpen(false)
       })
       .catch((error)=>{
-        console.log(error.message)
+        alert(error.message)
       })
   };
+
+  const guestLogin = () => {
+    const email = process.env.REACT_APP_GUEST_USER_EMAIL
+    const password = process.env.REACT_APP_GUEST_USER_PASSWORD
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential)=>{
+        alert('ログインしました！')
+        setOpen(false)
+      })
+      .catch((error)=>{
+        alert(error.message)
+      })
+  }
+
+  const googleLogin = () => {
+    signInWithPopup(auth, provider)
+      .then((result)=>{
+        // This gives you a Google Access Token. You can use it to access Google APIs.
+        setOpen(false)
+      }).catch((error)=>{
+        alert(error)
+      })
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -100,6 +122,18 @@ export const Login = ({setOpen, setLoginForm}) => {
               <Grid item>
               <Button onClick={()=>setLoginForm(false)}>
                   アカウントを作成する
+              </Button>
+              </Grid>
+              <Grid item>
+              <Button onClick={()=>guestLogin()}>
+                  ゲストユーザ
+              </Button>
+              </Grid>
+              <Grid item>
+              <Button onClick={()=>googleLogin()}>
+                <SvgIcon>
+                  <GoogleIcon />
+                </SvgIcon>
               </Button>
               </Grid>
             </Grid>

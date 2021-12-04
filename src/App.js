@@ -7,7 +7,7 @@ import { userContext } from './store/UserProvider';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { FavoritePage } from './pages/FavoritePage';
 import { NotFoundPage } from './pages/NotFoundPage';
-import {useHistory} from 'react-router-dom'
+import { InfoPage } from './pages/InfoPage';
 
 function App() {
   const {setCurrentUser} = useContext(userContext)
@@ -22,6 +22,7 @@ function App() {
       }
     })
     return unSub
+    // eslint-disable-next-line 
   },[])
   return (
     <BrowserRouter>
@@ -31,6 +32,9 @@ function App() {
       </Route>
       <Route path="/like/">
         <FavoritePage />
+      </Route>
+      <Route path="/info/">
+        <InfoPage />
       </Route>
       <Route>
         <NotFoundPage />

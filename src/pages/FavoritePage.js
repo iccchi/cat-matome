@@ -32,13 +32,7 @@ export const FavoritePage = () => {
     setCurrentMovie(favoriteCatList[0])
   },[favoriteCatList])
 
-  // const date = new Date().getTime()
-  // const minDate = new Date(2012,0,1,12,30).getTime()
-  // const afterDate = Math.floor(Math.random()*(date - minDate)) + minDate
-  // const beforeDate = afterDate - 1000*60*60*24*30*3
-  // console.log(new Date(afterDate).toISOString())
-  // console.log(new Date(beforeDate).toISOString())
-  
+
   return (
     <>
     <Header/>
@@ -64,7 +58,7 @@ export const FavoritePage = () => {
       }
       </Container>
       ):(
-        <div>アカウントを作成する</div>
+        <div>アカウントを作成してください</div>
       )
     }
     </Container>

@@ -21,9 +21,9 @@ export const LikeIcon = ({video}) => {
         channelTitle: video.snippet.channelTitle,
         thumbnails: video.snippet.thumbnails.high
       }).then((docRef)=>{
-        
+
       }).catch((err)=>{
-        console.log(err)
+        alert(err)
       })
     }else{
       await deleteDoc(doc(db, 'userlike', String(currentUser.id), 'movieList', video.id.videoId))
@@ -34,7 +34,6 @@ export const LikeIcon = ({video}) => {
   useEffect(()=>{
     getNekoLike(currentUser, video)
       .then(res=>{
-        console.log(res)
         setLike(res)
       })
   },[currentUser, video])
