@@ -16,5 +16,4 @@ https://cat-matome.vercel.app/
 バックエンド：Firebase<br>
 外部API: YouTubeAPI
 
-### アプリの機能
 
